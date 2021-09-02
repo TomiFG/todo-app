@@ -86,7 +86,7 @@ function editItem(id){
 
     var edit_div = `
         <div id="edit-${id}" class="item">
-            <input id="editField-${id}" type="text" class="inputField" value=${current_content}>
+            <input id="editField-${id}" type="text" class="inputField" value="${current_content}">
             <button class="inputBtn" onclick="updateItem(${id})">save</button>
         </div> 
     `
