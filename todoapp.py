@@ -22,11 +22,7 @@ def index():
 
 @app.route('/get_items')
 def getItems():
-    items_per_page = int(request.args.get('items_per_page', None))
-    current_page = int(request.args.get('current_page', None))
-
-    items_query = Item.query.paginate(current_page, items_per_page, False)
-    items_list = items_query.items
+    items_list = Item.query.all()
 
     items = []    
 
@@ -40,8 +36,6 @@ def getItems():
     response = jsonify(
         {
             "total": len(items_list),
-            "items_per_page": items_per_page,
-            "current_page": current_page,
             "items": items
         }
     )
