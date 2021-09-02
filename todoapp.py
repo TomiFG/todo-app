@@ -10,7 +10,7 @@ CORS(app)
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(150), nullable=False)
-    completed = db.Column(db.Boolean, default=False)
+    completed = db.Column(db.Boolean, default=0)
     
     def __repr__(self):
         return f'<Item {self.id}>'
@@ -86,7 +86,7 @@ def deleteItem(id):
 def updateItem(id):
     item_to_update = Item.query.get_or_404(id)
     new_content = request.args.get('content')
-
+    
     item_to_update.content = new_content 
 
     try:
@@ -96,11 +96,10 @@ def updateItem(id):
         return make_response(jsonify('There was an issue updating the item.'), 500)
 
 
-@app.route('/change_state/<id>', methods=['PUT'])
-def changeState(id):
+@app.route('/change_state/<id>/<state>', methods=['PUT'])
+def changeState(id, state):
     item_to_update = Item.query.get_or_404(id)
-    data = request.get_json()
-    new_state = data.get('completed', False)    
+    new_state = int(state) 
 
     item_to_update.completed = new_state
 
