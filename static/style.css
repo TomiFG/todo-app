@@ -33,4 +33,16 @@ html, body {
     margin: 0;
     cursor: pointer;
     font-size: 20px;
+    display: flex;
+}
+
+.iText {
+    flex: 6;
+}
+
+.delButton {
+    flex: 1;
+    height: 25px;
+    width: 25px;
+    vertical-align: middle;
 }

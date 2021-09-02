@@ -1,6 +1,7 @@
 
 buildList()
 
+// calls the api to get all the items and builds the list
 function buildList(){
     var container = document.getElementById('listContainer')
     var url = 'http://127.0.0.1:5000/get_items'
@@ -15,8 +16,10 @@ function buildList(){
         var list = data.items
         for (var i in list){
             var item = `
-                <div id="item-${i}" class="item">
-                    <p class=item>${list[i].content}</p>
+                <div class="item">
+                    <p class="iText">${list[i].content}</p>
+                    <button class="delButton" >edit</button>
+                    <button class="delButton" onclick="deleteItem(${list[i].id})">-</button>
                 </div> 
             `
             container.innerHTML += item
@@ -25,7 +28,7 @@ function buildList(){
     })
 }
 
-
+// calls the api to add a new item and re-build the list
 function addItem(content){
     var url = 'http://127.0.0.1:5000/add_item?content=' + content 
     
@@ -35,6 +38,17 @@ function addItem(content){
     })
 }
 
+// calls the api to delete an item and re-build the list
+function deleteItem(id){
+    var url = 'http://127.0.0.1:5000/delete_item/' + id 
+
+    fetch(url, {method: 'DELETE'})
+    .then(function(response){
+        buildList()
+    })
+}
+
+//run addItem only if there's something other than whitespace to submit
 var button = document.getElementById('inputButton')
 button.onclick = function() {
     inputField = document.getElementById('inputField')
@@ -47,3 +61,4 @@ button.onclick = function() {
 
     inputField.value = ''
 }
+
