@@ -17,7 +17,7 @@ html, body {
     vertical-align: middle;
 }
 
-#addButton {
+#inputButton {
     height: 50px;
     width: 50px;
     border: 1px solid black;
