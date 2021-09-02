@@ -20,8 +20,8 @@ function buildList(){
                 <div id="item-${id}" class="item">
                     <input type="checkbox" id="check-${id}" onchange="changeState(${id})" >
                     <p id="p-${id}" class="iText">${list[i].content}</p>
-                    <button class="delButton" onclick="editItem(${id})">edit</button>
-                    <button class="delButton" onclick="deleteItem(${id})">-</button>
+                    <button class="edButton" onclick="editItem(${id})">edit</button>
+                    <button class="delButton" onclick="deleteItem(${id})">x</button>
                 </div> 
             `
             container.innerHTML += item
@@ -87,7 +87,7 @@ function editItem(id){
     var edit_div = `
         <div id="edit-${id}" class="item">
             <input id="editField-${id}" type="text" class="inputField" value="${current_content}">
-            <button class="inputBtn" onclick="updateItem(${id})">save</button>
+            <button class="saveBtn" onclick="updateItem(${id})">save</button>
         </div> 
     `
     container.innerHTML = edit_div
