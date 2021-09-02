@@ -68,3 +68,9 @@ html, body {
     vertical-align: middle;
     font-size: 15px;
 }
+
+.sign {
+    margin-left: auto;
+    margin-right: auto;
+    width: 9em; 
+}
