@@ -36,7 +36,7 @@ function buildList(){
 
 // calls the api to add a new item and re-build the list
 function addItem(content){
-    var url = 'http://127.0.0.1:5000/add_item?content=' + content 
+    var url = 'https://to-do-ensolvers.herokuapp.com/add_item?content=' + content 
     
     fetch(url, {method: 'POST'})
     .then(function(response){
@@ -46,7 +46,7 @@ function addItem(content){
 
 // calls the api to delete an item and re-build the list
 function deleteItem(id){
-    var url = 'http://127.0.0.1:5000/delete_item/' + id 
+    var url = 'https://to-do-ensolvers.herokuapp.com/delete_item/' + id 
 
     fetch(url, {method: 'DELETE'})
     .then(function(response){
@@ -59,7 +59,7 @@ function changeState(id){
     var state_tf = document.getElementById('check-' + id).checked
     if (state_tf){ state = 1 }else{ state = 0 }
 
-    var url = 'http://127.0.0.1:5000/change_state/' + id + '/' + state
+    var url = 'https://to-do-ensolvers.herokuapp.com/change_state/' + id + '/' + state
     
     fetch(url, {method: 'PUT'})
 }
@@ -67,7 +67,7 @@ function changeState(id){
 // calls the api to updated an item's content
 function updateItem(id){
     var content = document.getElementById('editField-' + id).value.trim()
-    var url = 'http://127.0.0.1:5000/update_item/' + id + '?content=' + content
+    var url = 'https://to-do-ensolvers.herokuapp.com/update_item/' + id + '?content=' + content
 
     mainInput = document.getElementById('mainInput')
     mainInput.style.display = 'block'
