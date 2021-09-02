@@ -42,20 +42,6 @@ def getItems():
 
     return make_response(response, 200) 
 
-@app.route('/get_item/<id>')
-def getItem(id):
-    item = Item.query.get_or_404(id)
-    
-    if not item:
-        return make_response(jsonify('item not found'), 404)
-    
-    item_dict = {}
-    item_dict['id'] = id
-    item_dict['content'] = item.content
-    item_dict['completed'] = item.completed
-
-    return make_response(jsonify(item_dict), 200)
-
 
 @app.route('/add_item', methods=['POST'])
 def addItem():
