@@ -17,14 +17,19 @@ function buildList(){
         for (var i in list){
             var item = `
                 <div class="item">
+                    <input type="checkbox" id="check-${list[i].id}" onchange="changeState(${list[i].id})" >
                     <p class="iText">${list[i].content}</p>
                     <button class="delButton" >edit</button>
                     <button class="delButton" onclick="deleteItem(${list[i].id})">-</button>
                 </div> 
             `
             container.innerHTML += item
-        }
 
+        }
+       
+        for (var i in list){
+            document.getElementById('check-' + list[i].id).checked = list[i].completed
+        } 
     })
 }
 
@@ -47,6 +52,21 @@ function deleteItem(id){
         buildList()
     })
 }
+
+// calls the api to change the (completion) state of an item
+function changeState(id){
+
+    state_tf = document.getElementById('check-' + id).checked
+    if (state_tf){ state = 1 }else{ state = 0 }
+
+    var url = 'http://127.0.0.1:5000/change_state/' + id + '/' + state
+    
+    fetch(url, {method: 'PUT'})
+    .then(function(response){
+        buildList
+    })
+}
+
 
 //run addItem only if there's something other than whitespace to submit
 var button = document.getElementById('inputButton')
