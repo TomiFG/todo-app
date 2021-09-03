@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-# create and activate an environment called env
-virtualenv env
-source env/bin/activate
+if [[ $1 = "first" ]]
+then
+    echo "setting up virtual environment"
+    virtualenv env
+    source env/bin/activate
 
-# install requirements
-pip install -r requirements.txt
+    echo "installing requirements"
+    pip install -r requirements.txt
+fi
 
 # run local server
 python todoapp.py
