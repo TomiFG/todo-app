@@ -8,7 +8,11 @@ then
 
     echo "installing requirements"
     pip install -r requirements.txt
-fi
 
-# run local server
-python todoapp.py
+    #run local server
+    python todoapp.py
+else
+    source env/bin/activate
+    # run local server
+    python todoapp.py
+fi
