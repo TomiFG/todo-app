@@ -10,4 +10,4 @@ You will need to have _Python 3.8.3_ (or higher), _pip_ and _virtualenv_ install
 
 ---
 
-#### You can check it out running on [Heroku!](https://to-do-ensolvers.herokuapp.com)
+#### You can check it out running on [Heroku!](https://todo-app-tomasfg.herokuapp.com/)
