@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import jsonify
+#from flask import jsonify
 from todoapp import app
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
@@ -15,9 +15,8 @@ class DbObject:
         def __repr__(self):
             return f'<Item {self.id}>'
 
-
-    def query_items(self): 
-        items_list = Item.query.all()
+    def query_items(self, itm=Item): 
+        items_list = itm.query.all()
 
         items = []    
 
@@ -28,16 +27,14 @@ class DbObject:
             item_data['completed'] = item.completed
             items.append(item_data)
         
-        response = jsonify(
-            {
-                "total": len(items_list),
-                "items": items
-            }
-        )
+        response = {
+            "total": len(items_list),
+            "items": items
+        }
         return response
 
-    def add_item(self, content):
-        new_item = Item(content=content)
+    def add_item(self, content, itm=Item):
+        new_item = itm(content=content)
 
         try:
             db.session.add(new_item)
@@ -46,8 +43,8 @@ class DbObject:
         except:
             return False
 
-    def  delete_item(self, id): 
-        item_to_delete = Item.query.get_or_404(id) 
+    def  delete_item(self, id, itm=Item): 
+        item_to_delete = itm.query.get_or_404(id) 
 
         try:
             db.session.delete(item_to_delete)
@@ -56,8 +53,8 @@ class DbObject:
         except:
             return False
 
-    def update_item(self, id, new_content):
-        item_to_update = Item.query.get_or_404(id)
+    def update_item(self, id, new_content, itm=Item):
+        item_to_update = itm.query.get_or_404(id)
         
         item_to_update.content = new_content 
 
@@ -68,8 +65,8 @@ class DbObject:
             return False
 
 
-    def change_state(self, id, new_state):
-        item_to_update = Item.query.get_or_404(id)
+    def change_state(self, id, new_state, itm=Item):
+        item_to_update = itm.query.get_or_404(id)
 
         item_to_update.completed = int(new_state)
 
