@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
@@ -15,10 +15,6 @@ class Item(db.Model):
     def __repr__(self):
         return f'<Item {self.id}>'
 
-@app.route('/')
-def index():
-    items = Item.query.all()
-    return render_template('index.html')
 
 @app.route('/get_items')
 def getItems():
@@ -96,4 +92,4 @@ def changeState(id, state):
         return make_response(jsonify('There was an issue updating the item state'), 500)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
