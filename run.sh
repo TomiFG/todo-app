@@ -10,9 +10,11 @@ then
     pip install -r requirements.txt
 
     #run local server
-    python todoapp.py
+    python frontend/frontapp.py &
+    python backend/run.py 
 else
     source env/bin/activate
     # run local server
-    python todoapp.py
+    python frontend/frontapp.py &
+    python backend/run.py 
 fi
