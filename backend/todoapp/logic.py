@@ -5,7 +5,8 @@ from todoapp.database import DbObject as db
 
 @app.route('/get_items')
 def getItems():
-    result = jsonify(db.query_items())
+    query = db.query_items()
+    result = jsonify(query)
     return make_response(result, 200) 
 
 
